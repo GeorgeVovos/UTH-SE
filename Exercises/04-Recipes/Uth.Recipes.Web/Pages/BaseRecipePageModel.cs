@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Uth.Recipes.Web.ViewModels;
 
@@ -10,7 +11,7 @@ namespace Uth.Recipes.Web.Pages
 
         protected BaseRecipePageModel()
         {
-            NoImageData = new ImageViewModel { Data = System.IO.File.ReadAllBytes("wwwroot\\images\\nodata.jpg") };
+            NoImageData = new ImageViewModel { Data = System.IO.File.ReadAllBytes(Path.Combine("wwwroot", "images", "nodata.jpg")) };
         }
 
         protected void SetEmptyImagesIfNecessary(RecipeViewModel recipe)
