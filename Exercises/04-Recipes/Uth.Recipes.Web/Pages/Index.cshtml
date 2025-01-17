@@ -1,0 +1,38 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+@{
+    var features = new[]
+    {
+        new { Title = "Recipe Creation", Description = "Create and save your favorite recipes", Icon = "bi-pencil-square", Path = "/RecipeEdit" },
+        new { Title = "Recipe Management", Description = "Organize and edit your recipe collection", Icon = "bi-book", Path = "/RecipeManagement" },
+        new { Title = "Recipe Execution", Description = "Follow step-by-step cooking instructions", Icon = "bi-play-circle", Path = "/RecipeExecution" },
+    };
+}
+<div style="background-image: url('/images/a.jpg'); background-size: cover; background-position: center; min-height: calc(100vh - 120px);">
+    <div class="container">
+        <h1 class="text-center display-4 fw-bold mb-4" style=" color:antiquewhite"><i>Recipe Master</i></h1>
+        <p class="text-center mb-5" style=" color:antiquewhite">Your personal cooking companion</p>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @foreach (var feature in features)
+            {
+                <div class="col">
+                    <div class="card p-4 shadow-sm hover-shadow transition" style="background-color:antiquewhite">
+                        <div class="text-center mb-4">
+                            <div class="bg-warning bg-opacity-10 rounded-circle d-inline-block p-3">
+                                <i class="@feature.Icon fs-3"></i>
+                            </div>
+                        </div>
+                        <h5 class="text-center fw-bold"> <i> @feature.Title</i></h5>
+                        <p class="text-center text-muted">@feature.Description</p>
+                        <a href="@feature.Path" class="btn btn-warning w-100 mt-3">Get Started</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

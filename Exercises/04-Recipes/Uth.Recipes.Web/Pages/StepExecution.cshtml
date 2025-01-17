@@ -1,0 +1,113 @@
+﻿@page
+@model Uth.Recipes.Web.Pages.StepExecutionModel
+@{
+    ViewData["Title"] = "Recipe Execution";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- Centered Container -->
+<div class="d-flex flex-column justify-content-center align-items-center">
+    <h1>@ViewData["Title"]</h1>
+
+    <!-- Recipe Progress -->
+    @if (Model.Recipe != null)
+    {
+        <div class="w-75 mb-4">
+            <div class="d-flex justify-content-between text-muted">
+                <span>@Math.Round(Model.StepBasedRecipeExecution.CurrentProgress)% Complete (Steps)</span>
+            </div>
+            <div class="progress">
+                <div class="progress-bar bg-warning" role="progressbar" style="width: @Model.StepBasedRecipeExecution.CurrentProgress%" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+        <div class="w-75 mb-4">
+            <div class="d-flex justify-content-between text-muted">
+                <span>@Math.Round(Model.DurationBasedRecipeExecution.CurrentProgress)% Complete (Duration)</span>
+            </div>
+            <div class="progress">
+                <div class="progress-bar bg-warning" role="progressbar" style="width: @Model.DurationBasedRecipeExecution.CurrentProgress%" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="d-flex justify-content-between w-75 mb-4">
+            <button class="btn btn-warning" onclick="window.location.href='?recipeId=@Model.SelectedRecipeId&step=@(Model.StepBasedRecipeExecution.CurrentStepIndex - 1)'" @(Model.StepBasedRecipeExecution.CurrentStepIndex == 1 ? "disabled" : "")>
+                &#8592; Previous Step
+            </button>
+            <button class="btn btn-warning" onclick="window.location.href='?recipeId=@Model.SelectedRecipeId&step=@(Model.StepBasedRecipeExecution.CurrentStepIndex + 1)'" @(Model.StepBasedRecipeExecution.CurrentStepIndex == Model.Recipe.Steps.Count + 1 ? "disabled" : "")>
+                Next Step &#8594;
+            </button>
+        </div>
+
+        <!-- Recipe Step Card -->
+        <div class="card p-4 mb-4" style="border-radius: 10px; background-color: bisque; border:none; height:400px;width:700px">
+            <h2 class="mb-3 text-center">@Model.CurrentStep.Title</h2>
+
+            @if (Model.CurrentStep.Images != null)
+            {
+                <div id="stepCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        @for (int i = 0; i < Model.CurrentStep.Images.Count; i++)
+                        {
+                            <div class="carousel-item @(i == 0 ? "active" : "")">
+                                <img src="data:@Model.CurrentStep.Images[i].Data;base64,@Convert.ToBase64String(Model.CurrentStep.Images[i].Data)"
+                                     class="d-block w-100 rounded carousel-image"
+                                     alt="@Model.CurrentStep.Title">
+                            </div>
+                        }
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#stepCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#stepCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            }
+
+            <p class="text-center mb-4">@Model.CurrentStep.Description</p>
+
+            @if (Model.CurrentStep.Ingredients?.Any() == true)
+            {
+                <h4 class="text-center">Ingredients for this step:</h4>
+                <div class="d-flex justify-content-center">
+                    <ul class="list-unstyled me-4">
+                        @foreach (var ingredient in Model.CurrentStep.Ingredients)
+                        {
+                            <li>@ingredient.Name - @ingredient.Quantity</li>
+                        }
+                    </ul>
+                </div>
+            }
+
+            @if (!Model.StepBasedRecipeExecution.IsCompleted())
+            {
+                <div class="text-center text-muted mt-3">
+                    <span>Duration: @Model.CurrentStep.Duration minutes</span>
+                </div>
+            }
+        </div>
+    }
+</div>
+<style>
+    .carousel-image {
+        height: 500px; /* Adjust the height as needed */
+        width: 300%; /* Ensures the width spans the container */
+        object-fit: cover; /* Ensures the image fills the container while maintaining aspect ratio */
+    }
+</style>
+
+<script>
+    let currentImageIndex = 0;
+    const images = @Html.Raw(Json.Serialize(Model.CurrentStep.Images));
+
+    function changeImage(direction) {
+        if (images.length === 0) return; // Prevent errors with no images
+
+        currentImageIndex = (currentImageIndex + direction + images.length) % images.length; // Circular logic
+        document.getElementById("stepImage").src = images[currentImageIndex];
+    }
+</script>

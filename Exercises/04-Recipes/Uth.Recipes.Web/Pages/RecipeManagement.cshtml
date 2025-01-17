@@ -1,0 +1,125 @@
+﻿@page
+@model Uth.Recipes.Web.Pages.RecipeManagementModel
+@{
+}
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+<div class="container mt-4">
+
+    <!-- Page Heading -->
+    <div class="text-center mb-4">
+        <h1 class="">Recipe Management Dashboard</h1>
+        <p class="text-muted">Manage, search, and organize your favorite recipes seamlessly with our intuitive interface.</p>
+    </div>
+
+    <!-- Search & Filter Section -->
+    <div class="row mb-4 search-container">
+        <form method="post" class="form-inline w-100 justify-content-between">
+            <input type="text"
+                   style="background-color:white;"
+                   name="SearchTerm"
+                   class="form-control col-md-4 mr-2"
+                   placeholder="Search recipes by title or description..."
+                   value="@Model.SearchTerm" />
+
+            <select id="CategoryFilter"
+                    name="CategoryFilter"
+                    class="form-control col-md-3"
+                    style="background-color:white;"
+                    value="@Model.CategoryFilter">
+                @foreach (var category in Model.CategoryOptions)
+                {
+                    <option value="@category.Value">@category.Text</option>
+                }
+            </select>
+
+            <button type="submit" class="btn btn-warning col-md-2">Filter Recipes</button>
+        </form>
+    </div>
+
+    <!-- Table Section -->
+    <div class="table-container mb-4">
+        <h3 class="mb-3">Recipe List</h3>
+        <p class=" mb-3">Below are your filtered recipes. You can view details, modify, or delete them directly.</p>
+        <!-- Scrollable container for recipe list -->
+        <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+            <table class="table table-bordered table-hover" style="background-color:white;">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Recipe Title</th>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th class="text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var recipe in Model.FilteredRecipes)
+                    {
+                        <tr>
+                            <td>@recipe.Name</td>
+                            <td>@recipe.Category.Name</td>
+                            <td>@recipe.Description</td>
+                            <td class="text-right">
+                                <form method="post" class="d-inline-block">
+                                    <input type="hidden" name="RecipeId" value="@recipe.Id" />
+                                    <button type="submit" name="action" value="Execute" class="btn btn-outline-primary btn-sm">Execute</button>
+                                    <button type="submit" name="action" value="Edit" class="btn btn-outline-secondary btn-sm">Edit</button>
+                                    <button type="submit" name="action" value="AttemptDelete" class="btn btn-outline-danger btn-sm">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Instructions Section -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h4 class="text-dark">How to Use This Dashboard</h4>
+            <ul>
+                <li><strong>Search for Recipes:</strong> Use the search bar to quickly locate a recipe by title, description, or ingredient name.</li>
+                <li><strong>Filter by Category:</strong> Use the dropdown menu to focus on a specific category of recipes.</li>
+                <li><strong>View Recipe Details:</strong> Click the <span class="btn btn-outline-primary btn-sm">Execute</span> button to see more details about a recipe.</li>
+                <li><strong>Modify or Update:</strong> Edit recipe details with the <span class="btn btn-outline-secondary btn-sm">Edit</span> button.</li>
+                <li><strong>Delete Recipes:</strong> Remove a recipe you no longer need by clicking the <span class="btn btn-outline-danger btn-sm">Delete</span> button.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Modal Section for Delete Confirmation -->
+    @if (Model.RecipeToDelete != null)
+    {
+        <div class="modal fade show d-block" tabindex="-1" role="dialog" style="background: rgba(0,0,0,0.5);">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Delete Recipe</h5>
+  @*                       <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="window.location.reload();">
+                            <span aria-hidden="true">&times;</span>
+                        </button> *@
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete "@Model.RecipeToDelete.Name"? This action cannot be undone.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <form method="post" class="w-100">
+                            <input type="hidden" name="DeleteRecipeId" value="@Model.RecipeToDelete.Id" />
+                            <button type="submit" name="action" value="Cancel" class="btn btn-secondary">Cancel</button>
+                            <button type="submit" name="action" value="ConfirmDelete" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+<!-- Include Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

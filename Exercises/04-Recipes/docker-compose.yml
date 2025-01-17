@@ -1,0 +1,30 @@
+networks:
+  team1-network:
+    driver: bridge
+services:
+  team1-mysql:
+    image: mysql
+    restart: always
+    environment:
+       MYSQL_ROOT_PASSWORD: my-secret-pw
+       MYSQL_TCP_PORT: 3309
+    ports:
+      - 3309:3309
+    networks:
+      - team1-network
+    healthcheck:
+            test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+            timeout: 20s
+            retries: 10
+  uth.recipes.web:
+    image: ${DOCKER_REGISTRY-}team1-recipes-web
+    ports:
+      - 8085:8080
+    depends_on:
+       team1-mysql:
+          condition: service_healthy
+    build:
+      context: .
+      dockerfile: Uth.Recipes.Web/Dockerfile
+    networks:
+      - team1-network

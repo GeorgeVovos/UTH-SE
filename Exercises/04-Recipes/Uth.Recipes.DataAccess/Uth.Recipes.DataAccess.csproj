@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="DemoImages\Pancake01.jpeg" />
+    <None Remove="DemoImages\Pancake02.jpeg" />
+    <None Remove="DemoImages\PancakesStep01A.jpg" />
+    <None Remove="DemoImages\PancakesStep01B.jpg" />
+    <None Remove="DemoImages\PancakesStep02A.png" />
+    <None Remove="DemoImages\PancakesStep02b.jpeg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="DemoImages\Pancake01.jpeg" />
+    <EmbeddedResource Include="DemoImages\Pancake02.jpeg" />
+    <EmbeddedResource Include="DemoImages\PancakesStep01A.jpg" />
+    <EmbeddedResource Include="DemoImages\PancakesStep01B.jpg" />
+    <EmbeddedResource Include="DemoImages\PancakesStep02A.png" />
+    <EmbeddedResource Include="DemoImages\PancakesStep02B.jpeg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.0" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0-preview.2.efcore.9.0.0" />
+    <!--<PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0-preview.1" />-->
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Uth.Recipes.Domain\Uth.Recipes.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

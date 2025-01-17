@@ -1,0 +1,234 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model Uth.Recipes.Web.Pages.RecipeRecipeEditModel
+
+<h4 class="text-center mt-3">Add Recipe</h4>
+
+<div class="container mt-4">
+    <form method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="ViewModel.Id" />
+        <!-- Recipe Details Section -->
+        <div class="card shadow-sm p-4 mb-4">
+            <h4 class="card-title">Recipe Details</h4>
+            <div class="form-group mt-3">
+                <label for="Title">Title</label>
+                <input asp-for="ViewModel.Name" type="text" id="Title" name="ViewModel.Name" class="form-control" placeholder="Enter recipe title" required/>
+            </div>
+            <div class="form-group mt-3">
+                <label for="Category">Category</label>
+                <select id="Category" asp-for="ViewModel.CategoryName" name="ViewModel.CategoryName" class="form-control" required>
+                    @if (@Model.ViewModel.Categories != null)
+                    {
+                        @foreach (var category in Model.ViewModel.Categories)
+                        {
+                            <option value="@category.Value">@category.Text</option>
+                        }
+                    }
+
+                </select>
+                <input type="text" id="NewCategory" name="NewCategory" class="form-control mt-2 d-none" placeholder="Enter new category"/>
+            </div>
+            <!-- Difficulty Selection -->
+            <div class="form-group mt-3">
+                <label for="Difficulty">Difficulty</label>
+                <select asp-for="ViewModel.Difficulty" id="Difficulty" name="ViewModel.Difficulty" class="form-control" required>
+                    <option value="" disabled selected>Select difficulty</option>
+                    <option value="Easy">Easy</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Difficult">Difficult</option>
+                </select>
+            </div>
+            <!-- Description -->
+            <div class="form-group mt-3">
+                <label for="Description">Description</label>
+                <textarea asp-for="ViewModel.Description" id="Description" name="ViewModel.Description" class="form-control description-scroll"
+                          placeholder="Enter recipe description"></textarea>
+            </div>
+            <!-- Recipe Images -->
+            <div class="form-group mt-3">
+                <label for="RecipeImages">Recipe Images</label>
+                <input asp-for="ViewModel.Images" type="file" id="RecipeImages" name="ViewModel.Images" class="form-control" multiple/>
+
+                @if (Model.ViewModel.Images != null)
+                {
+                    foreach (var image in Model.ViewModel.Images)
+                    {
+                        <img src="data:image;base64,@Convert.ToBase64String(image.Data)" class="img-thumbnail mt-2" width="100" />
+                    }
+                }
+            </div>
+        </div>
+
+        <!-- Steps Section with Scroll -->
+        <div class="card shadow-sm p-4">
+            <h4 class="card-title">Steps</h4>
+            <div id="steps-container" class="steps-scroll mt-3">
+                <p class="text-muted">Add steps for your recipe below. Scroll here if steps overflow.</p>
+
+                @if (Model.ViewModel.Steps != null)
+                {
+                    for (var i = 0; i < Model.ViewModel.Steps.Count; i++)
+                    {
+                        <div class="card mt-3 shadow-sm step" id="step-@i">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Step Title</label>
+                                    <input asp-for="ViewModel.Steps[@i].Title" type="text" name="ViewModel.Steps[@i].Title" class="form-control" value="@Model.ViewModel.Steps[i].Title"/>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <label>Step Description</label>
+                                    <textarea asp-for="ViewModel.Steps[@i].Description" name="ViewModel.Steps[@i].Description" class="form-control description-scroll">@Model.ViewModel.Steps[i].Description</textarea>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <label>Duration (mins)</label>
+                                    <input asp-for="ViewModel.Steps[@i].Duration" type="number" name="ViewModel.Steps[@i].Duration" class="form-control" value="@Model.ViewModel.Steps[i].Duration"/>
+                                </div>
+
+                                <!-- Ingredients Section -->
+                                <div id="ingredients-container-@i" class="mt-3">
+                                    <h5>Ingredients</h5>
+                                    @if (Model.ViewModel.Steps[i].Ingredients != null)
+                                    {
+                                        for (var j = 0; j < Model.ViewModel.Steps[i].Ingredients.Count; j++)
+                                        {
+                                            <div class="ingredient mt-2" id="ingredient-@i-@j">
+                                                <input asp-for="ViewModel.Steps[@i].Ingredients[@j].Name" type="text"
+                                                       name="ViewModel.Steps[@i].Ingredients[@j].Name"
+                                                       class="form-control d-inline-block" placeholder="Ingredient Name"
+                                                       style="width: 50%;" value="@Model.ViewModel.Steps[i].Ingredients[j].Name"/>
+
+                                                <input asp-for="ViewModel.Steps[@i].Ingredients[@j].Quantity" type="text"
+                                                       name="ViewModel.Steps[@i].Ingredients[@j].Quantity"
+                                                       class="form-control d-inline-block" placeholder="Quantity"
+                                                       style="width: 35%; margin-left: 5px;" value="@Model.ViewModel.Steps[i].Ingredients[j].Quantity"/>
+
+                                                <button type="button" class="btn btn-sm btn-outline-danger"
+                                                        onclick="removeIngredient('ingredient-@i-@j')">
+                                                    Remove
+                                                </button>
+                                            </div>
+                                        }
+                                    }
+                                    <button type="button" class="btn btn-sm btn-outline-primary mt-2" onclick="addIngredient(@i)">+ Add Ingredient</button>
+                                </div>
+
+                                <!-- Step Images Section -->
+                                <div class="form-group mt-3">
+                                    <label>Step Images</label>
+                                    <input asp-for="ViewModel.Steps[@i].Images" type="file" name="ViewModel.Steps[@i].Images" class="form-control" multiple/>
+                                    @if (Model.ViewModel.Steps[i].Images != null)
+                                    {
+                                        foreach (var image in Model.ViewModel.Steps[i].Images)
+                                        {
+                                            <img src="data:image;base64,@Convert.ToBase64String(image.Data)" class="img-thumbnail mt-2" width="100"/>
+                                        }
+                                    }
+                                </div>
+
+                                <button type="button" class="btn btn-danger mt-3" onclick="removeStep('step-@i')">Remove Step</button>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            <button type="button" class="btn btn-outline-warning mt-3" onclick="addStep()">+ Add Step</button>
+        </div>
+
+        <button type="submit" class="btn btn-warning mt-4">Submit Recipe</button>
+    </form>
+</div>
+<script>
+    let stepCount = 0;
+
+    function addStep() {
+        const container = document.getElementById('steps-container');
+        const stepId = `step-${stepCount}`;
+        const stepHtml = `
+            <div class="card mt-3 shadow-sm step" id="${stepId}">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Step Title</label>
+                        <input asp-for="ViewModel.Steps[${stepCount}].Title" type="text" name="ViewModel.Steps[${stepCount}].Title" class="form-control" placeholder="Enter step title" />
+                    </div>
+                    <div class="form-group mt-3">
+                        <label>Step Description</label>
+                        <textarea asp-for="ViewModel.Steps[${stepCount}].Description" name="ViewModel.Steps[${stepCount}].Description" class="form-control description-scroll"
+                                  placeholder="Enter step description"></textarea>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label>Duration (mins)</label>
+                        <input asp-for="ViewModel.Steps[${stepCount}].Duration" type="number" name="ViewModel.Steps[${stepCount}].Duration" class="form-control" placeholder="Enter duration in minutes" />
+                    </div>
+                    <div id="ingredients-container-${stepCount}" class="mt-3">
+                        <h5>Ingredients</h5>
+                        <button type="button" class="btn btn-sm btn-outline-primary" onclick="addIngredient(${stepCount})">+ Add Ingredient</button>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label>Step Images</label>
+                        <input asp-for="ViewModel.Steps[${stepCount}].Images" type="file" name="ViewModel.Steps[${stepCount}].Images" class="form-control" multiple />
+                    </div>
+                    <button type="button" class="btn btn-danger mt-3" onclick="removeStep('${stepId}')">Remove Step</button>
+                </div>
+            </div>`;
+        container.insertAdjacentHTML('beforeend', stepHtml);
+        stepCount++;
+    }
+
+    function addIngredient(stepIndex) {
+        const container = document.getElementById(`ingredients-container-${stepIndex}`);
+        const ingredientCount = container.querySelectorAll('.ingredient').length;
+        const ingredientId = `ingredient-${stepIndex}-${ingredientCount}`;
+        const ingredientHtml = `
+            <div class="ingredient mt-2" id="${ingredientId}">
+            <input asp-for="ViewModel.Steps[${stepIndex}].Ingredients[${ingredientCount}].Name" type="text" name="ViewModel.Steps[${stepIndex}].Ingredients[${ingredientCount}].Name"
+                       class="form-control d-inline-block" placeholder="Ingredient Name" style="width: 50%;" />
+            <input  asp-for="ViewModel.Steps[${stepIndex}].Ingredients[${ingredientCount}].Quantity" type="text" name="ViewModel.Steps[${stepIndex}].Ingredients[${ingredientCount}].Quantity"
+                       class="form-control d-inline-block" placeholder="Quantity" style="width: 35%; margin-left: 5px;" />
+                <button type="button" class="btn btn-sm btn-outline-danger" onclick="removeIngredient('${ingredientId}')">Remove</button>
+            </div>`;
+        container.insertAdjacentHTML('beforeend', ingredientHtml);
+    }
+
+    function removeIngredient(ingredientId) {
+        document.getElementById(ingredientId).remove();
+    }
+
+    function removeStep(stepId) {
+        const stepElement = document.getElementById(stepId);
+        if (stepElement) {
+            stepElement.remove();
+        }
+    }
+</script>
+
+<style>
+    /* Scrollable steps container */
+    .steps-scroll {
+        max-height: 350px; /* Limit the visible space */
+        overflow-y: auto; /* Allow vertical scrolling only */
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    /* Scrollable description box */
+    .description-scroll {
+        max-height: 150px;
+        overflow-y: auto;
+        resize: none;
+        transition: border-color 0.3s ease;
+    }
+
+    /* Styling for hover/active interactions */
+    .form-control:active,
+    .form-control:hover {
+        border-color: #ffc107;
+        background-color: #fff7e6;
+    }
+
+    .form-control:focus {
+        border-color: #ffc107;
+        box-shadow: 0 0 5px rgba(255, 193, 7, 0.75);
+    }
+</style>
