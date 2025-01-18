@@ -7,9 +7,9 @@ namespace Uth.Recipes.Domain.RecipeExecution
 {
     public abstract class BaseRecipeExecution
     {
-        protected readonly List<RecipeStepExecutionData> Steps;
+        protected readonly List<IRunnableOperation> Steps;
 
-        protected BaseRecipeExecution(List<RecipeStepExecutionData> steps)
+        protected BaseRecipeExecution(List<IRunnableOperation> steps)
         {
             Steps = steps;
         }

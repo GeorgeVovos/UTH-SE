@@ -1,10 +1,12 @@
-﻿namespace Uth.Recipes.Domain.Recipes
-{
-    public class RecipeStepExecutionData
-    {
-        public readonly int Order;
+﻿using Uth.Recipes.Domain.RecipeExecution;
 
-        public readonly int Duration;
+namespace Uth.Recipes.Domain.Recipes
+{
+    public class RecipeStepExecutionData : IRunnableOperation
+    {
+        public int Order { get; }
+
+        public int Duration { get; }
         public RecipeStepExecutionData(int order, int duration)
         {
             Order = order;

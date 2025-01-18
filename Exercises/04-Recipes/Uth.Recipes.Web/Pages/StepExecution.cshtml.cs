@@ -26,7 +26,7 @@ namespace Uth.Recipes.Web.Pages
             if (recipeId != null)
             {
                 this.Recipe = RecipeViewModel.MapFromRecipe(await _recipeRepository.GetRecipeWithStepsAsync(recipeId.Value));
-                var stepExecutionData = this.Recipe?.Steps.Select(s => new RecipeStepExecutionData(s.Order, s.Duration)).ToList();
+                List<IRunnableOperation> stepExecutionData = Recipe?.Steps.Select(s => new RecipeStepExecutionData(s.Order, s.Duration)).ToList<IRunnableOperation>();
                 StepBasedRecipeExecution = new StepBasedRecipeExecution(stepExecutionData);
                 DurationBasedRecipeExecution = new DurationBasedRecipeExecution(stepExecutionData);
                 SetEmptyImagesIfNecessary(this.Recipe);

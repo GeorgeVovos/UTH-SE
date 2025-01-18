@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Uth.Recipes.Domain.Recipes;
 
 namespace Uth.Recipes.Domain.RecipeExecution
 {
     public class DurationBasedRecipeExecution : BaseRecipeExecution
     {
-        public DurationBasedRecipeExecution(List<RecipeStepExecutionData> steps) : base(steps)
+        public DurationBasedRecipeExecution(List<IRunnableOperation> steps) : base(steps)
         {
         }
 

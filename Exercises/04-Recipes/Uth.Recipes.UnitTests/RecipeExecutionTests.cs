@@ -9,7 +9,7 @@ namespace Uth.Recipes.UnitTests
         public void StepBasedRecipeExecution_NoAction_Success()
         {
             //Arrange
-            List<RecipeStepExecutionData> steps = CreateStepData();
+            List<IRunnableOperation> steps = CreateStepData();
             StepBasedRecipeExecution executionStrategy = new StepBasedRecipeExecution(steps);
 
             //Act
@@ -25,7 +25,7 @@ namespace Uth.Recipes.UnitTests
         public void StepBasedRecipeExecution_Once_Success()
         {
             //Arrange
-            List<RecipeStepExecutionData> steps = CreateStepData();
+            List<IRunnableOperation> steps = CreateStepData();
             StepBasedRecipeExecution executionStrategy = new StepBasedRecipeExecution(steps);
 
             //Act
@@ -41,7 +41,7 @@ namespace Uth.Recipes.UnitTests
         public void StepBasedRecipeExecution_Success()
         {
             //Arrange
-            List<RecipeStepExecutionData> steps = CreateStepData();
+            List<IRunnableOperation> steps = CreateStepData();
             StepBasedRecipeExecution executionStrategy = new StepBasedRecipeExecution(steps);
 
             //Act
@@ -58,7 +58,7 @@ namespace Uth.Recipes.UnitTests
         public void DurationBasedRecipeExecution_NoAction_Success()
         {
             //Arrange
-            List<RecipeStepExecutionData> steps = CreateStepData();
+            List<IRunnableOperation> steps = CreateStepData();
             DurationBasedRecipeExecution executionStrategy = new DurationBasedRecipeExecution(steps);
 
             //Act
@@ -74,7 +74,7 @@ namespace Uth.Recipes.UnitTests
         public void DurationBasedRecipeExecution_Once_Success()
         {
             //Arrange
-            List<RecipeStepExecutionData> steps = CreateStepData();
+            List<IRunnableOperation> steps = CreateStepData();
             DurationBasedRecipeExecution executionStrategy = new DurationBasedRecipeExecution(steps);
 
             //Act
@@ -90,7 +90,7 @@ namespace Uth.Recipes.UnitTests
         public void DurationBasedRecipeExecution_Twice_Success()
         {
             //Arrange
-            List<RecipeStepExecutionData> steps = CreateStepData();
+            List<IRunnableOperation> steps = CreateStepData();
             DurationBasedRecipeExecution executionStrategy = new DurationBasedRecipeExecution(steps);
 
             //Act
@@ -106,7 +106,7 @@ namespace Uth.Recipes.UnitTests
         public void DurationBasedRecipeExecution_Success()
         {
             //Arrange
-            List<RecipeStepExecutionData> steps = CreateStepData();
+            List<IRunnableOperation> steps = CreateStepData();
             DurationBasedRecipeExecution executionStrategy = new DurationBasedRecipeExecution(steps);
 
             //Act
@@ -120,9 +120,9 @@ namespace Uth.Recipes.UnitTests
         }
 
 
-        private static List<RecipeStepExecutionData> CreateStepData()
+        private static List<IRunnableOperation> CreateStepData()
         {
-            return new List<RecipeStepExecutionData>()
+            return new List<IRunnableOperation>()
             {
                 new RecipeStepExecutionData(1, 5),
                 new RecipeStepExecutionData(2, 15),
