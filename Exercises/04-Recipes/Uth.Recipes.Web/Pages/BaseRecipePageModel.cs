@@ -8,10 +8,12 @@ namespace Uth.Recipes.Web.Pages
     public abstract class BaseRecipePageModel : PageModel
     {
         protected readonly ImageViewModel NoImageData;
+        protected readonly ImageViewModel CongratulationsImageData;
 
         protected BaseRecipePageModel()
         {
             NoImageData = new ImageViewModel { Data = System.IO.File.ReadAllBytes(Path.Combine("wwwroot", "images", "nodata.jpg")) };
+            CongratulationsImageData = new ImageViewModel { Data = System.IO.File.ReadAllBytes(Path.Combine("wwwroot", "images", "Congradulations.jpg")) };
         }
 
         protected void SetEmptyImagesIfNecessary(RecipeViewModel recipe)
