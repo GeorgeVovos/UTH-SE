@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="Uth.Recipes.Domain.Categories.Category">
+    <Position X="5.75" Y="0.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Categories\Category.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uth.Recipes.Domain.Images.Image">
+    <Position X="14.75" Y="2.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Images\Image.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uth.Recipes.Domain.Ingredients.Ingredient">
+    <Position X="14.75" Y="7.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Ingredients\Ingredient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uth.Recipes.Domain.Recipes.Recipe">
+    <Position X="9.25" Y="0.75" Width="3.25" />
+    <Members>
+      <Property Name="CategoryId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IAADAAAAAAAgAwAAAAAAAAQAAAAAABAAAAABAAACCAA=</HashCode>
+      <FileName>Recipes\Recipe.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Category" />
+      <Property Name="Difficulty" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Images" />
+      <Property Name="Steps" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Uth.Recipes.Domain.Recipes.RecipeImage">
+    <Position X="14.75" Y="1" Width="2.25" />
+    <Members>
+      <Property Name="Recipe" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAAABEAAAAACAAAAAA=</HashCode>
+      <FileName>Recipes\RecipeImage.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Recipe" />
+      <Property Name="Image" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Uth.Recipes.Domain.Steps.Step">
+    <Position X="9.5" Y="4.5" Width="3" />
+    <Members>
+      <Property Name="Recipe" Hidden="true" />
+      <Property Name="RecipeId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAECAABAAAAiAEAAAAAAACAAAAAAQBAAAAAACAACAAA=</HashCode>
+      <FileName>Steps\Step.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Images" />
+      <Property Name="Ingredients" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Uth.Recipes.Domain.Steps.StepImage">
+    <Position X="14.75" Y="5" Width="2.25" />
+    <Members>
+      <Property Name="Step" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEABEAIAAAAAAAAAA=</HashCode>
+      <FileName>Steps\StepImage.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Image" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Uth.Recipes.Domain.Steps.StepIngredient">
+    <Position X="9.5" Y="8.25" Width="3" />
+    <Members>
+      <Property Name="IngredientId" Hidden="true" />
+      <Property Name="Step" Hidden="true" />
+      <Property Name="StepId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAABAAgAAAAAAAAAAAAAAAAAAAEAAAAIAAAgAAAAAA=</HashCode>
+      <FileName>Steps\StepIngredient.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Ingredient" />
+    </ShowAsAssociation>
+  </Class>
+  <Enum Name="Uth.Recipes.Domain.Recipes.Difficulty">
+    <Position X="5.75" Y="2.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAkAAA=</HashCode>
+      <FileName>Recipes\Difficulty.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

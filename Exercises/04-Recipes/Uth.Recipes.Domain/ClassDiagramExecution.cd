@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="Uth.Recipes.Domain.RecipeExecution.BaseRecipeExecution">
+    <Position X="9" Y="1.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAABAAEAQAAAAAgAAAIAAACAAAAAABAAAAAAgAAAAAA=</HashCode>
+      <FileName>RecipeExecution\RecipeExecution.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="Steps" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Uth.Recipes.Domain.RecipeExecution.DurationBasedRecipeExecution">
+    <Position X="7.5" Y="5.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RecipeExecution\DurationBasedRecipeExecution.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uth.Recipes.Domain.RecipeExecution.StepBasedRecipeExecution">
+    <Position X="11.25" Y="5.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RecipeExecution\StepBasedRecipeExecution.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Uth.Recipes.Domain.RecipeExecution.IRunnableOperation">
+    <Position X="13.25" Y="1.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RecipeExecution\IRunnableOperation.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
