@@ -5,21 +5,59 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="DemoImages\CaesarSalad\R1.jpg" />
+    <None Remove="DemoImages\CaesarSalad\Step1\1.jpg" />
+    <None Remove="DemoImages\CaesarSalad\Step2\2.png" />
+    <None Remove="DemoImages\CaesarSalad\Step3\3.jpg" />
+    <None Remove="DemoImages\ChocolateCake\R1.jpg" />
+    <None Remove="DemoImages\ChocolateCake\Step1\1.jpg" />
+    <None Remove="DemoImages\ChocolateCake\Step2\2.png" />
+    <None Remove="DemoImages\ChocolateCake\Step3\3.png" />
+    <None Remove="DemoImages\Garlicbread\R1.jpg" />
+    <None Remove="DemoImages\Garlicbread\R2.jpg" />
+    <None Remove="DemoImages\Garlicbread\Step1\1.jpg" />
+    <None Remove="DemoImages\Garlicbread\Step2\2A.jpg" />
+    <None Remove="DemoImages\Garlicbread\Step2\2B.jpg" />
+    <None Remove="DemoImages\Garlicbread\Step3\3.jpg" />
     <None Remove="DemoImages\Pancake01.jpeg" />
     <None Remove="DemoImages\Pancake02.jpeg" />
     <None Remove="DemoImages\PancakesStep01A.jpg" />
     <None Remove="DemoImages\PancakesStep01B.jpg" />
     <None Remove="DemoImages\PancakesStep02A.png" />
     <None Remove="DemoImages\PancakesStep02b.jpeg" />
+    <None Remove="DemoImages\SpaghettiCarbonara\R1.jpg" />
+    <None Remove="DemoImages\SpaghettiCarbonara\R2.jpeg" />
+    <None Remove="DemoImages\SpaghettiCarbonara\Step1\1.png" />
+    <None Remove="DemoImages\SpaghettiCarbonara\Step2\2.png" />
+    <None Remove="DemoImages\SpaghettiCarbonara\Step3\3.jpg" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="DemoImages\CaesarSalad\R1.jpg" />
+    <EmbeddedResource Include="DemoImages\CaesarSalad\Step1\1.jpg" />
+    <EmbeddedResource Include="DemoImages\CaesarSalad\Step2\2.png" />
+    <EmbeddedResource Include="DemoImages\CaesarSalad\Step3\3.jpg" />
+    <EmbeddedResource Include="DemoImages\ChocolateCake\R1.jpg" />
+    <EmbeddedResource Include="DemoImages\ChocolateCake\Step1\1.jpg" />
+    <EmbeddedResource Include="DemoImages\ChocolateCake\Step2\2.png" />
+    <EmbeddedResource Include="DemoImages\ChocolateCake\Step3\3.png" />
+    <EmbeddedResource Include="DemoImages\Garlicbread\R1.jpg" />
+    <EmbeddedResource Include="DemoImages\Garlicbread\R2.jpg" />
+    <EmbeddedResource Include="DemoImages\Garlicbread\Step1\1.jpg" />
+    <EmbeddedResource Include="DemoImages\Garlicbread\Step2\2A.jpg" />
+    <EmbeddedResource Include="DemoImages\Garlicbread\Step2\2B.jpg" />
+    <EmbeddedResource Include="DemoImages\Garlicbread\Step3\3.jpg" />
     <EmbeddedResource Include="DemoImages\Pancake01.jpeg" />
     <EmbeddedResource Include="DemoImages\Pancake02.jpeg" />
     <EmbeddedResource Include="DemoImages\PancakesStep01A.jpg" />
     <EmbeddedResource Include="DemoImages\PancakesStep01B.jpg" />
     <EmbeddedResource Include="DemoImages\PancakesStep02A.png" />
     <EmbeddedResource Include="DemoImages\PancakesStep02B.jpeg" />
+    <EmbeddedResource Include="DemoImages\SpaghettiCarbonara\R1.jpg" />
+    <EmbeddedResource Include="DemoImages\SpaghettiCarbonara\R2.jpeg" />
+    <EmbeddedResource Include="DemoImages\SpaghettiCarbonara\Step1\1.png" />
+    <EmbeddedResource Include="DemoImages\SpaghettiCarbonara\Step2\2.png" />
+    <EmbeddedResource Include="DemoImages\SpaghettiCarbonara\Step3\3.jpg" />
   </ItemGroup>
 
   <ItemGroup>

@@ -192,12 +192,42 @@ namespace Uth.Recipes.DataAccess
                 new Image() { Id = 3, Data = GetImageBytes("Uth.Recipes.DataAccess.DemoImages.PancakesStep01A.jpg"), Name = "PancakesStep01A.jpg" },
                 new Image() { Id = 4, Data = GetImageBytes("Uth.Recipes.DataAccess.DemoImages.PancakesStep01B.jpg"), Name = "PancakesStep01B.jpg" },
                 new Image() { Id = 5, Data = GetImageBytes("Uth.Recipes.DataAccess.DemoImages.PancakesStep02A.png"), Name = "PancakesStep02A.png" },
-                new Image() { Id = 6, Data = GetImageBytes("Uth.Recipes.DataAccess.DemoImages.PancakesStep02B.jpeg"), Name = "PancakesStep02B.jpeg" }
+                new Image() { Id = 6, Data = GetImageBytes("Uth.Recipes.DataAccess.DemoImages.PancakesStep02B.jpeg"), Name = "PancakesStep02B.jpeg" },
+
+                new Image() { Id = 7, Data = GetImageBytes("Uth.Recipes.DataAccess.DemoImages.Garlicbread.R1.jpg"), Name = "R1.jpg" },
+                new Image() { Id = 8, Data = GetImageBytes("Uth.Recipes.DataAccess.DemoImages.Garlicbread.R2.jpg"), Name = "R2.jpg" },
+                new Image() { Id = 9, Data = GetImageBytes("Uth.Recipes.DataAccess.DemoImages.Garlicbread.Step1.1.jpg"), Name = "1.jpg" },
+                new Image() { Id = 10, Data = GetImageBytes("Uth.Recipes.DataAccess.DemoImages.Garlicbread.Step2.2A.jpg"), Name = "2A.jpg" },
+                new Image() { Id = 11, Data = GetImageBytes("Uth.Recipes.DataAccess.DemoImages.Garlicbread.Step2.2B.jpg"), Name = "2B.jpg" },
+                new Image() { Id = 12, Data = GetImageBytes("Uth.Recipes.DataAccess.DemoImages.Garlicbread.Step3.3.jpg"), Name = "3.jpg" },
+
+                new Image() { Id = 13, Data = GetImageBytes("Uth.Recipes.DataAccess.DemoImages.ChocolateCake.R1.jpg"), Name = "R1.jpg" },
+                new Image() { Id = 14, Data = GetImageBytes("Uth.Recipes.DataAccess.DemoImages.ChocolateCake.Step1.1.jpg"), Name = "1.jpg" },
+                new Image() { Id = 15, Data = GetImageBytes("Uth.Recipes.DataAccess.DemoImages.ChocolateCake.Step2.2.png"), Name = "2.png" },
+                new Image() { Id = 16, Data = GetImageBytes("Uth.Recipes.DataAccess.DemoImages.ChocolateCake.Step3.3.png"), Name = "3.png" },
+
+                new Image() { Id = 17, Data = GetImageBytes("Uth.Recipes.DataAccess.DemoImages.CaesarSalad.R1.jpg"), Name = "R1.jpg" },
+                new Image() { Id = 18, Data = GetImageBytes("Uth.Recipes.DataAccess.DemoImages.CaesarSalad.Step1.1.jpg"), Name = "1.jpg" },
+                new Image() { Id = 19, Data = GetImageBytes("Uth.Recipes.DataAccess.DemoImages.CaesarSalad.Step2.2.png"), Name = "2.png" },
+                new Image() { Id = 20, Data = GetImageBytes("Uth.Recipes.DataAccess.DemoImages.CaesarSalad.Step3.3.jpg"), Name = "3.jpg" },
+
+                new Image() { Id = 21, Data = GetImageBytes("Uth.Recipes.DataAccess.DemoImages.SpaghettiCarbonara.R1.jpg"), Name = "R1.jpg" },
+                new Image() { Id = 22, Data = GetImageBytes("Uth.Recipes.DataAccess.DemoImages.SpaghettiCarbonara.R2.jpeg"), Name = "R2.jpeg" },
+                new Image() { Id = 23, Data = GetImageBytes("Uth.Recipes.DataAccess.DemoImages.SpaghettiCarbonara.Step1.1.png"), Name = "1.png" },
+                new Image() { Id = 24, Data = GetImageBytes("Uth.Recipes.DataAccess.DemoImages.SpaghettiCarbonara.Step2.2.png"), Name = "2.png" },
+                new Image() { Id = 25, Data = GetImageBytes("Uth.Recipes.DataAccess.DemoImages.SpaghettiCarbonara.Step3.3.jpg"), Name = "3.jpg" }
+
             );
 
             modelBuilder.Entity<RecipeImage>().HasData(
                 new RecipeImage() { RecipeId = 1, ImageId = 1 },
-                new RecipeImage() { RecipeId = 1, ImageId = 2 }
+                new RecipeImage() { RecipeId = 1, ImageId = 2 },
+                new RecipeImage() { RecipeId = 2, ImageId = 21 },
+                new RecipeImage() { RecipeId = 2, ImageId = 22 },
+                new RecipeImage() { RecipeId = 3, ImageId = 13 },
+                new RecipeImage() { RecipeId = 4, ImageId = 17 },
+                new RecipeImage() { RecipeId = 5, ImageId = 9 }
+
             );
 
             modelBuilder.Entity<StepImage>().HasData(
@@ -207,8 +237,18 @@ namespace Uth.Recipes.DataAccess
 
             modelBuilder.Entity<StepImage>().HasData(
                 new StepImage() { StepId = 2, ImageId = 5 },
-                new StepImage() { StepId = 2, ImageId = 6 }
+                new StepImage() { StepId = 2, ImageId = 6 },
+                new StepImage() { StepId = 3, ImageId = 23 },
+                new StepImage() { StepId = 4, ImageId = 24 },
+                new StepImage() { StepId = 5, ImageId = 14 },
+                new StepImage() { StepId = 6, ImageId = 15 },
+                new StepImage() { StepId = 7, ImageId = 18 },
+                new StepImage() { StepId = 8, ImageId = 19 },
+                new StepImage() { StepId = 9, ImageId = 9 },
+                new StepImage() { StepId = 10, ImageId = 10 },
+                new StepImage() { StepId = 10, ImageId = 11 }
             );
+
 
             modelBuilder.Entity<Step>().HasData(
                 // Pancakes
@@ -311,7 +351,7 @@ namespace Uth.Recipes.DataAccess
                     Duration = 10
                 }
             );
-            
+
 
             modelBuilder.Entity<Recipe>().HasData(
                 new Recipe
@@ -363,7 +403,7 @@ namespace Uth.Recipes.DataAccess
             using (MemoryStream ms = new MemoryStream())
             {
                 int read;
-                var sss = typeof(RecipesDbContext).Assembly.GetManifestResourceNames();
+
                 var manifestResourceStream = typeof(RecipesDbContext).Assembly.GetManifestResourceStream(resourceName);
 
                 while ((read = manifestResourceStream
