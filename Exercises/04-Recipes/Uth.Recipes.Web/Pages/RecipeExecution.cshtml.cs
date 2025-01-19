@@ -26,10 +26,10 @@ namespace Uth.Recipes.Web.Pages
 
         public async Task OnGet(string recipeId = null)
         {
-            var allRecipes = (await _recipeRepository.GetAllRecipes()).Select(RecipeViewModel.MapFromRecipe).ToList();
+            var allRecipes = (await _recipeRepository.GetAllRecipesWithImages()).Select(RecipeViewModel.MapFromRecipe).ToList();
             foreach (var recipe in allRecipes)
                 SetEmptyImagesIfNecessary(recipe);
-            
+
             RecipeList = CreateRecipeListItems(allRecipes);
 
             if (!string.IsNullOrEmpty(recipeId))

@@ -65,7 +65,7 @@ namespace Uth.Recipes.Web.Pages
                     {
                         Id = 0,
                         Title = "Congratulations",
-                        Description = "Enough you meal",
+                        Description = "Enjoy you meal",
                         Duration = 0,
                         Images = new List<ImageViewModel>() { CongratulationsImageData },
                         Ingredients = new List<StepIngredientViewModel>()

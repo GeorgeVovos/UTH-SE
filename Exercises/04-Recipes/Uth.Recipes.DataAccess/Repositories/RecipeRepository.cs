@@ -35,6 +35,21 @@ namespace Uth.Recipes.DataAccess.Repositories
             return await FullRecipeQuery().OrderByDescending(x => x.Id).ToListAsync();
         }
 
+        public async Task<List<Recipe>> GetAllRecipesWithImages()
+        {
+            return await Context.Recipes
+                .Include(r => r.Category)
+                .Include(r => r.Images)
+                .ThenInclude(i => i.Image)
+                .OrderByDescending(x => x.Id).ToListAsync();
+        }
+
+        public async Task<List<Recipe>> GetAllRecipesWithoutDependencies()
+        {
+            return await Context.Recipes
+                .Include(r => r.Category).OrderByDescending(x => x.Id).ToListAsync();
+        }
+
         public async Task DeleteRecipe(int recipeId)
         {
             var recipe = await Context.Recipes.FirstOrDefaultAsync(r => r.Id == recipeId);

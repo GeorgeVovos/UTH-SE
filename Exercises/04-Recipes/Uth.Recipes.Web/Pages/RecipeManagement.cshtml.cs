@@ -25,7 +25,7 @@ namespace Uth.Recipes.Web.Pages
         }
 
         public List<Recipe> FilteredRecipes => Recipes
-            .Where(r => (string.IsNullOrWhiteSpace(SearchTerm) || r.Name.Contains(SearchTerm, StringComparison.OrdinalIgnoreCase))
+            .Where(r => (string.IsNullOrWhiteSpace(SearchTerm) || (r.Name?.Contains(SearchTerm, StringComparison.OrdinalIgnoreCase) ?? false) || (r.Description?.Contains(SearchTerm, StringComparison.OrdinalIgnoreCase) ?? false))
                         && (CategoryFilter == "all" || CategoryFilter == null || r.Category.Name.Equals(CategoryFilter, StringComparison.OrdinalIgnoreCase)))
             .ToList();
 
@@ -42,7 +42,7 @@ namespace Uth.Recipes.Web.Pages
 
         private async Task RefreshData()
         {
-            Recipes = await _recipeRepository.GetAllRecipes();
+            Recipes = await _recipeRepository.GetAllRecipesWithoutDependencies();
             CategoryOptions = Recipes.
                 Where(x => x.Category != null).DistinctBy(x => x.Category).
                 Select(c => new SelectListItem { Value = c.Category.Name, Text = c.Category.Name })
@@ -74,7 +74,7 @@ namespace Uth.Recipes.Web.Pages
 
 
             await RefreshData();
-            
+
             return Page();
         }
     }

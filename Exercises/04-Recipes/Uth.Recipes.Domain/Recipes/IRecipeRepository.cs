@@ -7,6 +7,9 @@ namespace Uth.Recipes.Domain.Recipes
     {
         Task<Recipe> GetRecipeWithStepsAsync(int recipeId);
         Task<List<Recipe>> GetAllRecipes();
+        Task<List<Recipe>> GetAllRecipesWithoutDependencies();
+        Task<List<Recipe>> GetAllRecipesWithImages();
+
         Task DeleteRecipe(int recipeId);
         Task AddRecipe(Recipe recipe);
         Task EditRecipe(Recipe recipe);
