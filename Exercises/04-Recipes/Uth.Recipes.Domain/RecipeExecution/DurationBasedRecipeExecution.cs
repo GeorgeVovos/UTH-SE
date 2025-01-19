@@ -9,10 +9,19 @@ namespace Uth.Recipes.Domain.RecipeExecution
         {
         }
 
-        protected override double GetCurrentProgress() =>
-            (Steps.Where(s => s.Order <= (CurrentStepIndex - 1)).Sum(s => s.Duration)
-             / (double)Steps.Sum(s => s.Duration))
-            * 100;
+        protected override double GetCurrentProgress()
+        {
+            if (Steps == null)
+                return 0;
 
+            if (!Steps?.Any() ?? false)
+                return 0;
+
+            var totalDuration = (double)Steps.Sum(s => s.Duration);
+            if (totalDuration == 0)
+                return 100;
+
+            return (Steps.Where(s => s.Order <= (CurrentStepIndex - 1)).Sum(s => s.Duration) / totalDuration) * 100;
+        }
     }
 }

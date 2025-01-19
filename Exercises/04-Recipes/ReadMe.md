@@ -1,9 +1,10 @@
 # Team1 - Recipes
 
+The app is available at https://uthrecipesweb2025team1.azurewebsites.net/
 
 ### Prerequisites
 
-1. Clone the Uth.Recipes repository: https://updatethis.url   
+1. Clone the Uth.Recipes repository: https://github.com/GeorgeVovos/UTH-SE/tree/main/Exercises/04-Recipes
 2. Build and Run         
 2.1 [Install & start Docker Desktop](https://docs.docker.com/engine/install/)   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or   
