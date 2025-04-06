@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -21,12 +22,16 @@ namespace Uth.Recipes.Web
 
             // Add services to the container.
             builder.Services.AddRazorPages();
-            builder.Services.AddControllers();
+            builder.Services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+         
+            });
             builder.Services.AddOpenApi();
-      
+       
             var app = builder.Build();
             app.MapOpenApi();
-          
+
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/openapi/v1.json", "v1");
@@ -47,7 +52,7 @@ namespace Uth.Recipes.Web
                .WithStaticAssets();
 
             app.MapControllers();
-
+            
             app.Run();
         }
     }
