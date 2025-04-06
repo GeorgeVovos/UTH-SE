@@ -32,5 +32,17 @@ namespace Uth.Recipes.Web.Controllers
         {
             await _ingredientRepository.Create(new Ingredient(value));
         }
+
+        [HttpPut("{id}")]
+        public async Task<int> Put(int id, [FromBody] string value)
+        {
+            return await _ingredientRepository.Update(id, value);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task Delete(int id)
+        {
+            await _ingredientRepository.Delete(id);
+        }
     }
 }

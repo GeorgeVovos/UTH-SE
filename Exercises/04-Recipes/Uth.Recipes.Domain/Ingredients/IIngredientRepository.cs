@@ -10,5 +10,8 @@ namespace Uth.Recipes.Domain.Ingredients
         Task<List<Ingredient>> GetAll();
         Task<Ingredient> GetIngredientById(int id);
         Task Create(Ingredient ingredient);
+
+        Task Delete(int id);
+        Task<int> Update(int id, string ingredientName);
     }
 }

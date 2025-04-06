@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
+using Uth.Recipes.Domain.Categories;
 using Uth.Recipes.Domain.Ingredients;
 
 namespace Uth.Recipes.DataAccess.Repositories
@@ -32,13 +34,44 @@ namespace Uth.Recipes.DataAccess.Repositories
 
         public async Task<Ingredient> GetIngredientById(int id)
         {
-            return await Context.Ingredients.Where(b => b.Id == id).FirstOrDefaultAsync();
+            var ingredient = await Context.Ingredients.Where(b => b.Id == id).FirstOrDefaultAsync();
+
+            if (ingredient == null)
+            {
+                throw new Exception("Ingredient does not exist");
+            }
+
+            return ingredient;
         }
 
         public async Task Create(Ingredient ingredient)
         {
             await Add(ingredient);
             await Context.SaveChangesAsync();
+        }
+
+        public Task Delete(int id)
+        {
+            var ingredient = Context.Ingredients.FirstOrDefault(x => x.Id == id);
+            if (ingredient != null)
+            {
+                Context.Ingredients.Remove(ingredient);
+                return Context.SaveChangesAsync();
+            }
+
+            throw new Exception("Ingredient does not exist");
+        }
+
+        public Task<int> Update(int id, string ingredientName)
+        {
+            var ingredient = Context.Ingredients.FirstOrDefault(x => x.Id == id);
+            if (ingredient != null)
+            {
+                ingredient.Name = new Ingredient(ingredientName).Name;
+                return Context.SaveChangesAsync();
+            }
+
+            throw new Exception("Ingredient does not exist");
         }
     }
 }
