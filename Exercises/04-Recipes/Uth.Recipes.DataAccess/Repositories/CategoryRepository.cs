@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -47,6 +48,30 @@ namespace Uth.Recipes.DataAccess.Repositories
         {
             await Add(category);
             await Context.SaveChangesAsync();
+        }
+
+        public Task Delete(int id)
+        {
+            var category = Context.Categories.FirstOrDefault(x => x.Id == id);
+            if (category != null)
+            {
+                Context.Categories.Remove(category);
+                return Context.SaveChangesAsync();
+            }
+
+            throw new Exception("Category does not exist");
+        }
+
+        public Task<int> Update(int id, string categoryName)
+        {
+            var category = Context.Categories.FirstOrDefault(x => x.Id == id);
+            if (category != null)
+            {
+                category.Name = new Category(categoryName).Name;
+                return Context.SaveChangesAsync();
+            }
+
+            throw new Exception("Category does not exist");
         }
     }
 }

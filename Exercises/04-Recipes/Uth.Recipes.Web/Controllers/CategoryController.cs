@@ -21,6 +21,7 @@ namespace Uth.Recipes.Web.Controllers
         {
             return await _categoryRepository.GetAll();
         }
+
         [HttpGet("{id}")]
         public async Task<Category> Get(int id)
         {
@@ -31,6 +32,18 @@ namespace Uth.Recipes.Web.Controllers
         public async Task Post([FromBody] string value)
         {
             await _categoryRepository.Create(new Category(value));
+        }
+
+        [HttpPut("{id}")]
+        public async Task<int> Put(int id, [FromBody] string value)
+        {
+            return await _categoryRepository.Update(id, value);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task Delete(int id)
+        {
+            await _categoryRepository.Delete(id);
         }
     }
 }
