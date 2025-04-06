@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Uth.Recipes.Domain.Recipes;
+using Uth.Recipes.Web.ViewModels;
 
 namespace Uth.Recipes.Web.Controllers
 {
@@ -24,9 +26,41 @@ namespace Uth.Recipes.Web.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<Recipe> Get(int id)
+        public async Task<RecipeViewModel> Get(int id)
         {
-            return await _recipeRepository.GetRecipeWithStepsAsync(id);
+            var recipe = await _recipeRepository.GetRecipeWithStepsAsync(id);
+            return RecipeViewModel.MapFromRecipe(recipe);
+        }
+
+        [HttpPost]
+        public async Task Post([FromBody] RecipeViewModel model)
+        {
+            if (model == null)
+                throw new ArgumentException("Request body must not be null");
+
+            if (string.IsNullOrWhiteSpace(model.Name))
+                throw new ArgumentException("A recipe must have a name");
+
+            Recipe recipe = await model.MapToRecipe(null);
+            await _recipeRepository.AddRecipe(recipe);
+        }
+
+        [HttpPut("{id}")]
+        public async Task Put(int id, [FromBody] RecipeViewModel model)
+        {
+            if (id <= 0)
+                throw new ArgumentException("Id must be greater than 0", nameof(id));
+
+            model.Id = id;
+            Recipe recipe = await model.MapToRecipe(null);
+
+            await _recipeRepository.EditRecipe(recipe);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task Delete(int id)
+        {
+            await _recipeRepository.Delete(id);
         }
 
         public class RecipeResource

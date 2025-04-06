@@ -174,6 +174,18 @@ namespace Uth.Recipes.DataAccess.Repositories
             await Context.SaveChangesAsync();
         }
 
+        public Task Delete(int id)
+        {
+            var recipe = Context.Recipes.FirstOrDefault(x => x.Id == id);
+            if (recipe != null)
+            {
+                Context.Recipes.Remove(recipe);
+                return Context.SaveChangesAsync();
+            }
+
+            throw new Exception("Recipes does not exist");
+        }
+
         private IIncludableQueryable<Recipe, Ingredient> FullRecipeQuery()
         {
             return Context.Recipes

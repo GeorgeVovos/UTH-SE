@@ -69,7 +69,11 @@ namespace Uth.Recipes.Web.ViewModels
 
         public async Task<Recipe> MapToRecipe(HttpRequest request)
         {
-            await LoadImageStreams(request);
+            if(request != null)
+            {
+                await LoadImageStreams(request);
+            }
+           
 
             Recipe newRecipe = new Recipe()
             {

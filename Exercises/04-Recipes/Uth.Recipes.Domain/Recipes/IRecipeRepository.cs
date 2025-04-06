@@ -13,5 +13,6 @@ namespace Uth.Recipes.Domain.Recipes
         Task DeleteRecipe(int recipeId);
         Task AddRecipe(Recipe recipe);
         Task EditRecipe(Recipe recipe);
+        Task Delete(int id);
     }
 }
