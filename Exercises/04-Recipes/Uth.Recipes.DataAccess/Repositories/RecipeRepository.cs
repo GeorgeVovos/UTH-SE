@@ -68,8 +68,11 @@ namespace Uth.Recipes.DataAccess.Repositories
             // All this logic is to help Entity Framework handle object tracking correctly and not add duplicate
             // Ingredient records in the Ingredients table (when we attach an object graph on the Context, everything is marked as a new object)
             // Categories as simple as we don't allow the user to create new categories on the UI
+            var categoryName = recipe.Category?.Name;
+            recipe.Category =  await _categoryRepository.GetCategoryByName(categoryName);
+            if( recipe.Category == null)
+                throw new ArgumentException("Category:" + categoryName + " not found");
 
-            recipe.Category = await _categoryRepository.GetCategoryByName(recipe.Category.Name);
             if (recipe.Steps != null)
                 foreach (var step in recipe.Steps)
                 {
@@ -104,7 +107,12 @@ namespace Uth.Recipes.DataAccess.Repositories
 
             existingRecord.Name = recipeModel.Name;
             existingRecord.Description = recipeModel.Description;
-            existingRecord.CategoryId = (await _categoryRepository.GetCategoryByName(recipeModel.Category.Name)).Id;
+            var categoryName = recipeModel.Category.Name;
+            var categoryByName = await _categoryRepository.GetCategoryByName(categoryName);
+            if(categoryByName ==null)
+                throw new ArgumentException("Category:" + categoryName + " not found");
+
+            existingRecord.CategoryId = categoryByName.Id;
             existingRecord.Difficulty = recipeModel.Difficulty;
 
             // All this logic is to help Entity Framework handle object tracking correctly and not add duplicate
