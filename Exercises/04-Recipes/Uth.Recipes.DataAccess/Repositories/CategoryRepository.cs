@@ -44,10 +44,11 @@ namespace Uth.Recipes.DataAccess.Repositories
             return await Context.Categories.Where(b => b.Id == id).FirstOrDefaultAsync();
         }
 
-        public async Task Create(Category category)
+        public async Task<Category> Create(Category category)
         {
-            await Add(category);
+            var entity = await Add(category);
             await Context.SaveChangesAsync();
+            return entity;
         }
 
         public Task Delete(int id)

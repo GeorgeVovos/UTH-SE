@@ -29,9 +29,12 @@ namespace Uth.Recipes.Web.Controllers
         }
 
         [HttpPost]
-        public async Task Post([FromBody] string value)
+        public async Task<PostApiResponse> Post([FromBody] string value)
         {
-            await _categoryRepository.Create(new Category(value));
+            return new PostApiResponse()
+            {
+                Id = (await _categoryRepository.Create(new Category(value)))?.Id
+            };
         }
 
         [HttpPut("{id}")]

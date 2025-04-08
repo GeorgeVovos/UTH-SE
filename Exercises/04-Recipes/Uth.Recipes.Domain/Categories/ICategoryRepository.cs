@@ -9,7 +9,7 @@ namespace Uth.Recipes.Domain.Categories
         Task<Category> GetCategoryByName(string categoryName);
         Task<List<Category>> GetAll();
         Task<Category> GetCategoryById(int id);
-        Task Create(Category category);
+        Task<Category> Create(Category category);
 
         Task Delete(int id);
         Task<int> Update(int id, string categoryName);

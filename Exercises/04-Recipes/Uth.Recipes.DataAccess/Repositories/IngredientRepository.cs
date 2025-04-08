@@ -44,10 +44,11 @@ namespace Uth.Recipes.DataAccess.Repositories
             return ingredient;
         }
 
-        public async Task Create(Ingredient ingredient)
+        public async Task<Ingredient> Create(Ingredient ingredient)
         {
-            await Add(ingredient);
+            var entity = await Add(ingredient);
             await Context.SaveChangesAsync();
+            return entity;
         }
 
         public Task Delete(int id)
