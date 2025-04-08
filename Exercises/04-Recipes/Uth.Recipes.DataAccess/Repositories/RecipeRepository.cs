@@ -30,6 +30,10 @@ namespace Uth.Recipes.DataAccess.Repositories
             return await FullRecipeQuery().FirstOrDefaultAsync(r => r.Id == recipeId);
         }
 
+        public async Task<List<Recipe>> GetAllRecipesLight()
+        {
+            return await Context.Recipes.OrderByDescending(x => x.Id).ToListAsync();
+        }
         public async Task<List<Recipe>> GetAllRecipes()
         {
             return await FullRecipeQuery().OrderByDescending(x => x.Id).ToListAsync();

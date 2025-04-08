@@ -22,7 +22,7 @@ namespace Uth.Recipes.Web.Controllers
         [HttpGet]
         public async Task<List<RecipeResource>> Get()
         {
-            return (await _recipeRepository.GetAllRecipes()).Select(x => new RecipeResource { Id = x.Id, Name = x.Name }).ToList();
+            return (await _recipeRepository.GetAllRecipesLight()).Select(x => new RecipeResource { Id = x.Id, Name = x.Name , Description = x.Description }).ToList();
         }
 
         [HttpGet("{id}")]
@@ -71,6 +71,7 @@ namespace Uth.Recipes.Web.Controllers
         {
             public int Id { get; set; }
             public string Name { get; set; }
+            public string Description { get; set; }
         }
     }
 
