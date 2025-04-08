@@ -1,0 +1,55 @@
+Category GET
+curl --location "https://20250406recipesapi.azurewebsites.net/api/Category" --header "Accept: text/plain"
+
+Category POST
+curl --location "https://20250406recipesapi.azurewebsites.net/api/Category" --header "Content-Type: application/json" --data "\"CategoryNameFromAPI123\""
+
+Category GET/{id}
+curl --location "https://20250406recipesapi.azurewebsites.net/api/Category/1" --header "Accept: text/plain"
+
+Category PUT
+curl --location --request PUT "https://20250406recipesapi.azurewebsites.net/api/Category/1" --header "Content-Type: application/json" --header "Accept: text/plain" --data "\"CategoryNameFromAPI\""
+
+Category DELETE
+curl --location --request DELETE "https://20250406recipesapi.azurewebsites.net/api/Category/XXX"
+
+
+
+Ingredient GET
+curl --location "https://20250406recipesapi.azurewebsites.net/api/Ingredient" --header "Accept: text/plain"
+
+Ingredient POST
+curl --location "https://20250406recipesapi.azurewebsites.net/api/Ingredient" --header "Content-Type: application/json" --data "\"CategoryNameFromAPI123\""
+
+Ingredient GET/{id}
+curl --location "https://20250406recipesapi.azurewebsites.net/api/Ingredient/1" --header "Accept: text/plain"
+
+Ingredient PUT
+curl --location --request PUT "https://20250406recipesapi.azurewebsites.net/api/Ingredient/1" --header "Content-Type: application/json" --header "Accept: text/plain" --data "\"CategoryNameFromAPI\""
+
+Ingredient DELETE
+curl --location --request DELETE "https://20250406recipesapi.azurewebsites.net/api/Ingredient/XXX"
+
+
+
+
+Recipe GET
+curl --location "https://20250406recipesapi.azurewebsites.net/api/Recipe" --header "Accept: text/plain"
+
+Recipe POST
+curl -X POST -H "Content-Type: application/json" -d @NewRecipe.json https://20250406recipesapi.azurewebsites.net/api/Recipe
+curl -X POST -H "Content-Type: application/json" -d @NewRecipeWithImages.json https://20250406recipesapi.azurewebsites.net/api/Recipe
+
+
+Recipe GET/{id}
+curl --location "https://20250406recipesapi.azurewebsites.net/api/Recipe/1" --header "Accept: text/plain"
+
+Recipe PUT
+curl -X PUT -H "Content-Type: application/json" -d @UpdatedRecipe.json https://20250406recipesapi.azurewebsites.net/api/Recipe/11
+
+
+Recipe DELETE
+curl --location --request DELETE "https://20250406recipesapi.azurewebsites.net/api/Recipe/XXX"
+
+curl --location "https://20250406recipesapi.azurewebsites.net//api/Recipe" --header "Accept: text/plain"
+

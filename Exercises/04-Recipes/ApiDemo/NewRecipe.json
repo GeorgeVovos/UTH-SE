@@ -1,0 +1,47 @@
+{
+
+    "name": "My Title API13",
+    "categoryName": "Appetizer",
+    "difficulty": 0,
+    "description": "Some description",
+    "steps": [
+        {
+  
+            "title": "Step 1 title",
+            "description": "Step 1 description",
+            "order": 1,
+            "duration": 22,
+            "ingredients": [
+                {
+                    "quantity": "22",
+                    "name": "Eggs"
+                },
+                {
+                    "quantity": "3",
+                    "name": "Water"
+                }
+            ],
+            "images": []
+        },
+        {
+
+            "title": "Step 2 title",
+            "description": "Step 2 desc",
+            "order": 2,
+            "duration": 44,
+            "ingredients": [
+                {
+                    "quantity": "2322",
+                    "name": "eeee"
+                },
+                {
+                    "quantity": "444",
+                    "name": "sdfsdf"
+                }
+            ],
+            "images": []
+        }
+    ],
+    "images": [],
+    "categories": null
+}

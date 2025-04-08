@@ -1,0 +1,46 @@
+{
+    "name": "My Title UPDATED 2xxx ",
+    "categoryName": "Appetizer",
+    "difficulty": 0,
+    "description": "Some description UPDATED ",
+    "steps": [
+        {
+    
+            "title": "Step 1 title UPDATED ",
+            "description": "Step 1 description UPDATED ",
+            "order": 1,
+            "duration": 22,
+            "ingredients": [
+                {
+                    "quantity": "22",
+                    "name": "EggsUPDATED "
+                },
+                {
+                    "quantity": "3",
+                    "name": "Water"
+                }
+            ],
+            "images": []
+        },
+        {
+      
+            "title": "Step 2 titleUPDATED ",
+            "description": "Step 2 descUPDATED ",
+            "order": 2,
+            "duration": 44,
+            "ingredients": [
+                {
+                    "quantity": "2322",
+                    "name": "eeee"
+                },
+                {
+                    "quantity": "444",
+                    "name": "sdfsdf"
+                }
+            ],
+            "images": []
+        }
+    ],
+    "images": [],
+    "categories": null
+}

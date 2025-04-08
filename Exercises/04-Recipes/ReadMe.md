@@ -3,8 +3,10 @@
 The app is available at https://20250406recipesapi.azurewebsites.net/    
 The API can best tested at https://20250406recipesapi.azurewebsites.net/swagger/index.html 
 
-A Postman collection for all available API endpoint is at Uth.Recipes.Web - v1.postman_collection.json , you can import it and use it.    
-After importing itm you need to set the environment variable "baseUrl" to the base URL of the API, which is https://20250406recipesapi.azurewebsites.net/
+A Postman collection for all available API endpoint is at **ApiDemo/Uth.Recipes.Web - v1.postman_collection.json** , you can import it and use it.    
+After importing itm you need to set the environment variable "baseUrl" to the base URL of the API, which is https://20250406recipesapi.azurewebsites.net/    
+
+There are also code samples at **ApiDemo/ApiDemoDart.dart** and **ApiDemo/ApiDemoCurl.txt**
 
 ### Prerequisites
 
