@@ -33,7 +33,7 @@ namespace Uth.Recipes.Web.Controllers
         }
 
         [HttpPost]
-        public async Task Post([FromBody] RecipeViewModel model)
+        public async Task<PostApiResponse> Post([FromBody] RecipeViewModel model)
         {
             if (model == null)
                 throw new ArgumentException("Request body must not be null");
@@ -42,7 +42,11 @@ namespace Uth.Recipes.Web.Controllers
                 throw new ArgumentException("A recipe must have a name");
 
             Recipe recipe = await model.MapToRecipe(null);
-            await _recipeRepository.AddRecipe(recipe);
+            
+            return new PostApiResponse()
+            {
+                Id = (await _recipeRepository.AddRecipe(recipe))?.Id
+            };
         }
 
         [HttpPut("{id}")]

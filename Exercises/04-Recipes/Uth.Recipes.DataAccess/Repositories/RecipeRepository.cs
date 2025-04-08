@@ -60,10 +60,10 @@ namespace Uth.Recipes.DataAccess.Repositories
             await Context.SaveChangesAsync();
         }
 
-        public async Task AddRecipe(Recipe recipe)
+        public async Task<Recipe> AddRecipe(Recipe recipe)
         {
             if (recipe == null)
-                return;
+                return null;
 
             // All this logic is to help Entity Framework handle object tracking correctly and not add duplicate
             // Ingredient records in the Ingredients table (when we attach an object graph on the Context, everything is marked as a new object)
@@ -93,6 +93,7 @@ namespace Uth.Recipes.DataAccess.Repositories
             Context.Entry(recipe.Category).State = EntityState.Unchanged;
 
             await Context.SaveChangesAsync();
+            return recipe;
         }
 
         public async Task EditRecipe(Recipe recipeModel)

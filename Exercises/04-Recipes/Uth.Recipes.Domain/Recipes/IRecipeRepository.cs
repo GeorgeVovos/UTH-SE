@@ -11,7 +11,7 @@ namespace Uth.Recipes.Domain.Recipes
         Task<List<Recipe>> GetAllRecipesWithImages();
 
         Task DeleteRecipe(int recipeId);
-        Task AddRecipe(Recipe recipe);
+        Task<Recipe> AddRecipe(Recipe recipe);
         Task EditRecipe(Recipe recipe);
         Task Delete(int id);
     }
