@@ -51,6 +51,11 @@ namespace Uth.Recipes.Web
             app.MapRazorPages()
                .WithStaticAssets();
 
+            app.UseCors(policy => 
+                policy.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+
             app.MapControllers();
             
             app.Run();
